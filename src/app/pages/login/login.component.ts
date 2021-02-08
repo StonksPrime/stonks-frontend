@@ -2,16 +2,17 @@ import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from '../../@core/data/auth'
+import { AuthenticationService } from '../../@core/data/auth';
 
 @Component({
-  selector: 'stonks-login',
+  selector: 'ngx-stonks-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
+
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  loading=false;
+  loading = false;
   submitted = false;
   returnUrl: string;
   error = '';
@@ -20,13 +21,13 @@ export class LoginComponent implements OnInit{
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
   ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
         username: ['', Validators.required],
-        password: ['', Validators.required]
+        password: ['', Validators.required],
     });
 
     // reset login status
@@ -54,12 +55,10 @@ export class LoginComponent implements OnInit{
                 this.router.navigate([this.returnUrl]);
             },
             error => {
-              console.log(error.status)
               this.error = error.status;
-              if (String(error.status) == '401'){
-                this.error = 'Invalid credentials'
+              if (String(error.status) === '401') {
+                this.error = 'Invalid credentials';
               }
-                
               this.loading = false;
             });
 }

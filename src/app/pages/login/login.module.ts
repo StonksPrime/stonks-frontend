@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {LoginComponent} from './login.component'
+import {LoginComponent} from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
@@ -21,6 +21,6 @@ import { ThemeModule } from '../../@theme/theme.module';
   ],
   declarations: [
     LoginComponent,
-  ]
+  ],
 })
 export class LoginModule { }

@@ -93,7 +93,7 @@ const DATA_SERVICES = [
   { provide: StatsProgressBarData, useClass: StatsProgressBarService },
   { provide: VisitorsAnalyticsData, useClass: VisitorsAnalyticsService },
   { provide: SecurityCamerasData, useClass: SecurityCamerasService },
-  { provide: AuthenticationService, useClass: AuthService }
+  { provide: AuthenticationService, useClass: AuthService },
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {

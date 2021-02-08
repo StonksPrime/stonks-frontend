@@ -27,43 +27,38 @@ export class AuthService {
                     // login successful if there's a jwt token in the response
                     let currentUser: UserAuth;
                     if (response.access) {
-                        // store user details and jwt token in local storage to keep user logged in between page refreshes
-                        currentUser = jwt_decode(response.access)
-                        currentUser.token = response.access
-                        currentUser.refreshToken = response.refresh
+                        // store user details and jwt token in local storage to keep user logged in between pages
+                        currentUser = jwt_decode(response.access);
+                        currentUser.token = response.access;
+                        currentUser.refreshToken = response.refresh;
                         localStorage.setItem('currentUser', JSON.stringify(currentUser));
                         this.currentUserSubject.next(currentUser);
-                    } 
+                    }
                     return currentUser;
                 }),
-                //catchError(this.handleError)
-            )
+                // catchError(this.handleError)
+            );
             // .subscribe( data => console.log('data'), error => console.log('error'))
     }
 
     refreshToken() {
-        console.log('this.currentUserValue.refreshToken')
-        console.log(this.currentUserValue.refreshToken)
-        const refreshToken = this.currentUserValue.refreshToken
+        const refreshToken = this.currentUserValue.refreshToken;
         return this.http.post<any>(`${environment.apiUrl}/${environment.jwtRefresh}`, { 'refresh': refreshToken })
             .pipe(
                 map(response => {
                     // login successful if there's a jwt token in the response
-                    console.log('refresh')
-                    console.log(response)
                     let currentUser: UserAuth;
                     if (response.access) {
-                        // store user details and jwt token in local storage to keep user logged in between page refreshes
-                        currentUser = jwt_decode(response.access)
-                        currentUser.token = response.access
-                        currentUser.refreshToken = response.refresh
+                        // store user details and jwt token in local storage to keep user logged in between pages
+                        currentUser = jwt_decode(response.access);
+                        currentUser.token = response.access;
+                        currentUser.refreshToken = response.refresh;
                         localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                        console.log(currentUser)
                         this.currentUserSubject.next(currentUser);
-                    } 
+                    }
                     return currentUser;
                 }),
-            )
+            );
             // .subscribe( data => console.log('data'), error => console.warn(error))
     }
 
