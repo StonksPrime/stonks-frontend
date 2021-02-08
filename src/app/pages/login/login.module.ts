@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {LoginComponent} from './login.component'
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
@@ -16,6 +17,7 @@ import { ThemeModule } from '../../@theme/theme.module';
     NbButtonModule,
     NbInputModule,
     NbCheckboxModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     LoginComponent,
