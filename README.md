@@ -13,3 +13,8 @@ Setup
 	```bash
 	npm start
 	```
+
+Run TSLint with this command:
+	```bash
+	npm run -s prepush
+	```

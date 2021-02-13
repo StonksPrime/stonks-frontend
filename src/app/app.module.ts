@@ -21,7 +21,8 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
-import { of as observableOf } from "rxjs";
+import { of as observableOf } from 'rxjs';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

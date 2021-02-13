@@ -72,11 +72,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.menuService.onItemClick()
       .pipe(
-        //filter(({ tag }) => tag === 'my-context-menu'),
+        // filter(({ tag }) => tag === 'my-context-menu'),
         map(({ item: { title } }) => title),
       )
       .subscribe(title => {
-        if (title === 'Log out'){
+        if (title === 'Log out') {
           this.userService.logout();
           this.menuService.navigateHome();
           this.user = null;
