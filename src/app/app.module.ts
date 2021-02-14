@@ -21,7 +21,7 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
-import { of as observableOf } from 'rxjs';
+import { RoleProvider } from './role.provider';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,16 +44,15 @@ import { of as observableOf } from 'rxjs';
     NbSecurityModule.forRoot({
       accessControl: {
         guest: {
-          view: ['news', 'comments'],
+          view: ['login'],
         },
         user: {
-          parent: 'guest',
           create: 'comments',
-          view: 'user',
+          view: ['user'],
         },
         moderator: {
           parent: 'user',
-          create: 'news',
+          create: '*',
           remove: '*',
         },
       },
@@ -61,14 +60,7 @@ import { of as observableOf } from 'rxjs';
   ],
   providers: [
     // ...
-    {
-      provide: NbRoleProvider,
-      useValue: {
-        getRole: () => {
-          return observableOf('guest');
-        },
-      },
-    },
+    { provide: NbRoleProvider, useClass: RoleProvider },
   ],
   bootstrap: [AppComponent],
 })
