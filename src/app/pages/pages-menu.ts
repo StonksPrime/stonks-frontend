@@ -8,7 +8,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
     data: {
       permission: 'view',
-      resource: 'defaultGuestPermissions'
+      resource: 'defaultGuestPermissions',
     },
   },
   {
@@ -17,7 +17,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     data: {
       permission: 'view',
-      resource: 'defaultUserPermissions'
+      resource: 'defaultUserPermissions',
     },
   },
   {
@@ -26,7 +26,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/iot-dashboard',
     data: {
       permission: 'view',
-      resource: 'defaultUserPermissions'
+      resource: 'defaultUserPermissions',
     },
   },
   {
@@ -35,7 +35,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/login',
     data: {
       permission: 'view',
-      resource: 'defaultGuestPermissions'
+      resource: 'defaultGuestPermissions',
     },
   },
  /* {
