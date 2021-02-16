@@ -6,21 +6,37 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'home-outline',
     link: '/pages/home',
     home: true,
+    data: {
+      permission: 'view',
+      resource: 'defaultGuestPermissions'
+    },
   },
   {
     title: 'Dashboard',
     icon: 'bar-chart',
     link: '/pages/dashboard',
+    data: {
+      permission: 'view',
+      resource: 'defaultUserPermissions'
+    },
   },
   {
     title: 'Today\'s higlights',
     icon: 'shopping-cart-outline',
     link: '/pages/iot-dashboard',
+    data: {
+      permission: 'view',
+      resource: 'defaultUserPermissions'
+    },
   },
   {
     title: 'Login/Register',
     icon: 'lock-outline',
     link: '/pages/login',
+    data: {
+      permission: 'view',
+      resource: 'defaultGuestPermissions'
+    },
   },
  /* {
     title: 'FEATURES',

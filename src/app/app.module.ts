@@ -44,11 +44,11 @@ import { RoleProvider } from './role.provider';
     NbSecurityModule.forRoot({
       accessControl: {
         guest: {
-          view: ['login'],
+          view: ['defaultGuestPermissions'],
         },
         user: {
           create: 'comments',
-          view: ['user'],
+          view: ['defaultUserPermissions'],
         },
         moderator: {
           parent: 'user',
