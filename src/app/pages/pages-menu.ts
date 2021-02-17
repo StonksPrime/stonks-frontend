@@ -21,6 +21,109 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
+    title: 'My Portfolio',
+    icon: 'list-outline',
+    link: '/pages/home',
+    home: true,
+    data: {
+      permission: 'view',
+      resource: 'defaultGuestPermissions',
+    },
+    children: [
+      {
+        title: 'Stocks',
+        icon: 'trending-up-outline',
+      },
+      {
+        title: 'ETF',
+        icon: 'trending-up-outline',
+      },
+      {
+        title: 'Crypto',
+        icon: 'trending-up-outline',
+      },
+    ],
+  },
+  {
+    title: 'My Squads',
+    icon: 'people-outline',
+    link: '/pages/home',
+    home: true,
+    data: {
+      permission: 'view',
+      resource: 'defaultGuestPermissions',
+    },
+    children: [
+      {
+        title: 'Squad X',
+      },
+      {
+        title: 'Squad Y',
+      },
+      {
+        title: 'Squad Z',
+      },
+    ],
+  },
+  {
+    title: 'Discover',
+    icon: 'compass-outline',
+    link: '/pages/home',
+    home: true,
+    data: {
+      permission: 'view',
+      resource: 'defaultGuestPermissions',
+    },
+    children: [
+      {
+        title: 'Investors',
+        icon: 'person-outline',
+      },
+      {
+        title: 'Squads',
+        icon: 'people-outline',
+      },
+      {
+        title: 'Assets',
+        icon: 'briefcase-outline',
+        children: [
+          {
+            title: 'Stocks',
+            icon: 'trending-up-outline',
+          },
+          {
+            title: 'ETF',
+            icon: 'trending-up-outline',
+          },
+          {
+            title: 'Crypto',
+            icon: 'trending-up-outline',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Rankings',
+    icon: 'award-outline',
+    link: '/pages/home',
+    home: true,
+    data: {
+      permission: 'view',
+      resource: 'defaultGuestPermissions',
+    },
+  },
+  {
+    title: 'Blackboard',
+    icon: 'clipboard-outline',
+    link: '/pages/home',
+    home: true,
+    data: {
+      permission: 'view',
+      resource: 'defaultGuestPermissions',
+    },
+  },
+  {
     title: 'Today\'s higlights',
     icon: 'shopping-cart-outline',
     link: '/pages/iot-dashboard',
