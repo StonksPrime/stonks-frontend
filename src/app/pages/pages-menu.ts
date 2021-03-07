@@ -27,7 +27,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
     data: {
       permission: 'view',
-      resource: 'defaultGuestPermissions',
+      resource: 'defaultUserPermissions',
     },
     children: [
       {
@@ -51,7 +51,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
     data: {
       permission: 'view',
-      resource: 'defaultGuestPermissions',
+      resource: 'defaultUserPermissions',
     },
     children: [
       {
@@ -72,7 +72,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
     data: {
       permission: 'view',
-      resource: 'defaultGuestPermissions',
+      resource: 'defaultUserPermissions',
     },
     children: [
       {
@@ -110,7 +110,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
     data: {
       permission: 'view',
-      resource: 'defaultGuestPermissions',
+      resource: 'defaultUserPermissions',
     },
   },
   {
@@ -120,7 +120,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
     data: {
       permission: 'view',
-      resource: 'defaultGuestPermissions',
+      resource: 'defaultUserPermissions',
     },
   },
   {
