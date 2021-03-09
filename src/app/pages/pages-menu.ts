@@ -23,8 +23,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'My Portfolio',
     icon: 'list-outline',
-    link: '/pages/home',
-    home: true,
     data: {
       permission: 'view',
       resource: 'defaultUserPermissions',
@@ -32,14 +30,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Stocks',
+        link: '/pages/portfolio',
         icon: 'trending-up-outline',
       },
       {
         title: 'ETF',
+        link: '/pages/portfolio',
         icon: 'trending-up-outline',
       },
       {
         title: 'Crypto',
+        link: '/pages/portfolio',
         icon: 'trending-up-outline',
       },
     ],
@@ -48,7 +49,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'My Squads',
     icon: 'people-outline',
     link: '/pages/home',
-    home: true,
     data: {
       permission: 'view',
       resource: 'defaultUserPermissions',
@@ -69,7 +69,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Discover',
     icon: 'compass-outline',
     link: '/pages/home',
-    home: true,
     data: {
       permission: 'view',
       resource: 'defaultUserPermissions',
@@ -107,7 +106,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Rankings',
     icon: 'award-outline',
     link: '/pages/home',
-    home: true,
     data: {
       permission: 'view',
       resource: 'defaultUserPermissions',
@@ -117,7 +115,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Blackboard',
     icon: 'clipboard-outline',
     link: '/pages/home',
-    home: true,
     data: {
       permission: 'view',
       resource: 'defaultUserPermissions',
