@@ -2,18 +2,18 @@ import { Component, Input, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators';
 
-import { TrafficList } from '../../../../@core/data/traffic-list';
+import { StockList } from '../../../../@core/data/stock-list';
 
 @Component({
-  selector: 'ngx-traffic-front-card',
-  styleUrls: ['./traffic-front-card.component.scss'],
-  templateUrl: './traffic-front-card.component.html',
+  selector: 'asset-card',
+  styleUrls: ['./asset-listitem.component.scss'],
+  templateUrl: './asset-listitem.component.html',
 })
-export class TrafficFrontCardComponent implements OnDestroy {
+export class AssetListItemComponent implements OnDestroy {
 
   private alive = true;
 
-  @Input() frontCardData: TrafficList;
+  @Input() frontCardData: StockList;
 
   currentTheme: string;
 

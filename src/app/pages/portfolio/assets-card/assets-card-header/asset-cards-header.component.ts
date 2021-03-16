@@ -3,18 +3,17 @@ import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
-  selector: 'ngx-traffic-cards-header',
-  styleUrls: ['./traffic-cards-header.component.scss'],
-  templateUrl: './traffic-cards-header.component.html',
+  selector: 'asset-cards-header',
+  styleUrls: ['./asset-cards-header.component.scss'],
+  templateUrl: './asset-cards-header.component.html',
 })
-export class TrafficCardsHeaderComponent implements OnDestroy {
+export class AssetCardsHeaderComponent implements OnDestroy {
   private alive = true;
 
-  @Output() periodChange = new EventEmitter<string>();
 
-  @Input() type: string = 'week';
+  @Input() type: string = 'Stock';
 
-  types: string[] = ['week', 'month', 'year'];
+  types: string[] = ['ETF', 'Stock', 'Crypto'];
   currentTheme: string;
 
   constructor(private themeService: NbThemeService) {
@@ -25,9 +24,12 @@ export class TrafficCardsHeaderComponent implements OnDestroy {
       });
   }
 
+  refreshAssets(){
+    // TODO
+  }
   changePeriod(period: string): void {
-    this.type = period;
-    this.periodChange.emit(period);
+    //this.type = period;
+
   }
 
   ngOnDestroy() {

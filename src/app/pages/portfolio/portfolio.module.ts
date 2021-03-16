@@ -13,12 +13,10 @@ import {
 
 import { NgxEchartsModule } from 'ngx-echarts';
 
-import { TrafficRevealCardComponent } from './traffic-reveal-card/traffic-reveal-card.component';
-import { TrafficBarComponent } from './traffic-reveal-card/front-side/traffic-bar/traffic-bar.component';
-import { TrafficFrontCardComponent } from './traffic-reveal-card/front-side/traffic-front-card.component';
-import { TrafficCardsHeaderComponent } from './traffic-reveal-card/traffic-cards-header/traffic-cards-header.component';
-import { TrafficBackCardComponent } from './traffic-reveal-card/back-side/traffic-back-card.component';
-import { TrafficBarChartComponent } from './traffic-reveal-card/back-side/traffic-bar-chart.component';
+import { AssetsCardComponent } from './assets-card/assets-card.component';
+import { PeriodBarComponent } from './assets-card/assets-card-body/period-bar/period-bar.component';
+import { AssetListItemComponent } from './assets-card/assets-card-body/asset-listitem.component';
+import { AssetCardsHeaderComponent } from './assets-card/assets-card-header/asset-cards-header.component';
 
 import { ThemeModule } from '../../@theme/theme.module';
 
@@ -37,12 +35,10 @@ import { ThemeModule } from '../../@theme/theme.module';
   ],
   declarations: [
     PortfolioComponent,
-    TrafficRevealCardComponent,
-    TrafficBarChartComponent,
-    TrafficFrontCardComponent,
-    TrafficBackCardComponent,
-    TrafficBarComponent,
-    TrafficCardsHeaderComponent,
+    AssetsCardComponent,
+    AssetListItemComponent,
+    PeriodBarComponent,
+    AssetCardsHeaderComponent,
   ],
 })
 export class PortfolioModule { }

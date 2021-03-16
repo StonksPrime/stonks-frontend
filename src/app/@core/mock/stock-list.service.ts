@@ -19,10 +19,18 @@ export class StockListService extends StockListData {
   }
 
   private stocks: StockList[] = [
-    { date: 'Amazon', value: 329.2, delta: { up: true, value: 12},
-          comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 } },
-    { date: 'Tesla', value: 329.2, delta: { up: false, value: 7},
-          comparison: { prevDate: 'M', prevValue: 5, nextDate: 'W', nextValue: 12 } },
+    { assetName: 'Amazon', ticker: 'AMZN', broker: 'DEGIRO', type: 'stock', market: 'Nasdaq', ownedShares: 2,
+        value: 3049.2, totalValue: 6098.4, gains: 1647.57, gainsPercent: 27, delta: { up: true, value: 27},
+        comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 }, 
+        img: 'https://cdn.worldvectorlogo.com/logos/amazon-icon-1.svg' },
+    { assetName: 'Tesla', ticker: 'TSLA', broker: 'DEGIRO', type: 'stock', market: 'Nasdaq', ownedShares: 4,
+        value: 529.2, totalValue: 2141.9, gains: 1306.56, gainsPercent: 61, delta: { up: true, value: 61},
+        comparison: { prevDate: 'M', prevValue: 5, nextDate: 'W', nextValue: 32 },
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Tesla_T_symbol.svg/482px-Tesla_T_symbol.svg.png' },
+    { assetName: 'Apple', ticker: 'APPL', broker: 'DEGIRO', type: 'stock', market: 'Nasdaq', ownedShares: 10,
+        value: 127.4, totalValue: 1274, gains: 89.18, gainsPercent: -7, delta: { up: false, value: 7},
+        comparison: { prevDate: 'M', prevValue: 5, nextDate: 'W', nextValue: 12 },
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Apple_logo_dark_grey.svg/1200px-Apple_logo_dark_grey.svg.png' },
   ];
 
   private getDataWeek(): StockList[] {

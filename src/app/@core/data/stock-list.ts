@@ -1,8 +1,16 @@
 import { Observable } from 'rxjs';
 
 export interface StockList {
-  date: string;
+  assetName: string; 
+  ticker: string;
+  broker: string;
+  type: string;
+  market: string;
+  ownedShares: number;
   value: number;
+  totalValue: number;
+  gains: number;
+  gainsPercent: number;
   delta: {
     up: boolean;
     value: number;
@@ -13,6 +21,7 @@ export interface StockList {
     nextDate: string;
     nextValue: number;
   };
+  img: string;
 }
 
 export abstract class StockListData {
