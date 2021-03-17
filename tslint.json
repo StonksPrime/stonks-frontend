@@ -33,7 +33,7 @@
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
-      true,
+      false,
       120
     ],
     "member-access": false,
@@ -108,12 +108,14 @@
       true,
       "attribute",
       "ngx",
+      "slab",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
       "ngx",
+      "slab",
       "kebab-case"
     ],
     "ban": [

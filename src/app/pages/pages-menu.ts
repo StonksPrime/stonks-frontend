@@ -29,6 +29,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
     children: [
       {
+        title: 'All assets',
+        link: '/pages/portfolio',
+        icon: 'trending-up-outline',
+      },
+      {
         title: 'Stocks',
         link: '/pages/portfolio',
         icon: 'trending-up-outline',

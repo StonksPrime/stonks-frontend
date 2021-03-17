@@ -5,7 +5,7 @@ import { takeWhile } from 'rxjs/operators';
 import { StockList } from '../../../../@core/data/stock-list';
 
 @Component({
-  selector: 'asset-card',
+  selector: 'asset-card-body',
   styleUrls: ['./asset-listitem.component.scss'],
   templateUrl: './asset-listitem.component.html',
 })

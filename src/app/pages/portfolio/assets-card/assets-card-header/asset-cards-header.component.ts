@@ -24,12 +24,12 @@ export class AssetCardsHeaderComponent implements OnDestroy {
       });
   }
 
-  refreshAssets(){
+  refreshAssets() {
     // TODO
   }
-  changePeriod(period: string): void {
-    //this.type = period;
 
+  changePeriod(period: string): void {
+    // this.type = period;
   }
 
   ngOnDestroy() {

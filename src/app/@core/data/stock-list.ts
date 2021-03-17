@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
 export interface StockList {
-  assetName: string; 
+  assetName: string;
   ticker: string;
   broker: string;
   type: string;

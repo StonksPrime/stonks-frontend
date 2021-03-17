@@ -37,7 +37,8 @@
     display: flex;
     align-items: center;
   }
-  .img-container{
+
+  .img-container {
     height: 70px;
     width: 70px;
     display: flex;
@@ -72,7 +73,8 @@
       justify-content: center;
     }
   }
-  .value{
+
+  .value {
     text-shadow: grey;
     font-weight: bold;
     font-size: larger;
@@ -81,7 +83,7 @@
     font-size: large;
   }
 
-  .stock-info{
+  .stock-info {
     font-size: small;
     color: grey;
   }
@@ -101,15 +103,16 @@
     text-align: right;
     align-content: right;
   }
-  .info-price{
+
+  .info-price {
     text-align: right;
     justify-content: right;
-  }    
+  }
   
-  .delta{
+  .delta {
       justify-content: right;
       display: inline;
-    }
+  }
   
   @include media-breakpoint-down(is) {
     ngx-traffic-bar {

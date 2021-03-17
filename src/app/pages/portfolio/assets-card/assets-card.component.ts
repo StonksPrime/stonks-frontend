@@ -11,30 +11,43 @@ export class AssetsCardComponent implements OnDestroy {
   private alive = true;
 
   stockListData: StockList;
-  period: string = 'week';
+  cryptoListData: StockList;
+  ETFListData: StockList;
+
+  assetType: string = 'stock';
   revealed = true;
-  assetType = 'Stocks';
+  stockType = 'Stocks';
+  ETFType = 'Exchange Traded Funds';
+  cryptoType = 'Crypto Assets';
 
-  constructor(private trafficListService: StockListData,
+  constructor(private stockListService: StockListData,
               ) {
-    this.getTrafficFrontCardData(this.period);
-  }
-
-  setPeriodAngGetData(value: string): void {
-    this.period = value;
-
-    this.getTrafficFrontCardData(value);
+    this.getAssetsData('stock');
+    this.getAssetsData('ETF');
+    this.getAssetsData('crypto');
   }
 
   toggleView() {
     this.revealed = !this.revealed;
   }
 
-  getTrafficFrontCardData(period: string) {
-    this.trafficListService.getStockListData(period)
+  getAssetsData(assetType: string) {
+    this.stockListService.getStockListData(assetType)
       .pipe(takeWhile(() => this.alive))
-      .subscribe(stockListData => {
-        this.stockListData = stockListData;
+      .subscribe(assetListData => {
+        switch (assetType) {
+          case 'stock':
+            this.stockListData = assetListData;
+            break;
+          case 'ETF':
+            this.ETFListData = assetListData;
+            break;
+          case 'crypto':
+            this.cryptoListData = assetListData;
+            break;
+          default:
+            break;
+        }
       });
   }
 

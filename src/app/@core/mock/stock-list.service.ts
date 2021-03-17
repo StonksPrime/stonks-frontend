@@ -12,16 +12,16 @@ export class StockListService extends StockListData {
   constructor(private period: PeriodsService) {
     super();
     this.data = {
-      week: this.getDataWeek(),
-      month: this.getDataMonth(),
-      year: this.getDataYear(),
+      stock: this.getStockData(),
+      ETF: this.getETFData(),
+      crypto: this.getCryptoData(),
     };
   }
 
   private stocks: StockList[] = [
     { assetName: 'Amazon', ticker: 'AMZN', broker: 'DEGIRO', type: 'stock', market: 'Nasdaq', ownedShares: 2,
         value: 3049.2, totalValue: 6098.4, gains: 1647.57, gainsPercent: 27, delta: { up: true, value: 27},
-        comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 }, 
+        comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 },
         img: 'https://cdn.worldvectorlogo.com/logos/amazon-icon-1.svg' },
     { assetName: 'Tesla', ticker: 'TSLA', broker: 'DEGIRO', type: 'stock', market: 'Nasdaq', ownedShares: 4,
         value: 529.2, totalValue: 2141.9, gains: 1306.56, gainsPercent: 61, delta: { up: true, value: 61},
@@ -33,28 +33,38 @@ export class StockListService extends StockListData {
         img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Apple_logo_dark_grey.svg/1200px-Apple_logo_dark_grey.svg.png' },
   ];
 
-  private getDataWeek(): StockList[] {
+  private cryptos: StockList[] = [
+    { assetName: 'Bitcoin', ticker: 'BTC', broker: 'Kraken', type: 'crypto', market: 'Moon', ownedShares: 2,
+        value: 3049.2, totalValue: 6098.4, gains: 1647.57, gainsPercent: 27, delta: { up: true, value: 27},
+        comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 },
+        img: 'https://storage.googleapis.com/www-paredro-com/uploads/2019/04/bitcoin.jpg' },
+    { assetName: 'Ethereum', ticker: 'ETH', broker: 'Kraken', type: 'crypto', market: 'Moon', ownedShares: 4,
+        value: 529.2, totalValue: 2141.9, gains: 1306.56, gainsPercent: 61, delta: { up: true, value: 61},
+        comparison: { prevDate: 'M', prevValue: 5, nextDate: 'W', nextValue: 32 },
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/1200px-Ethereum-icon-purple.svg.png' },
+    { assetName: 'CRO', ticker: 'CRO', broker: 'Kraken', type: 'crypto', market: 'Moon', ownedShares: 10,
+        value: 127.4, totalValue: 1274, gains: 89.18, gainsPercent: -7, delta: { up: false, value: 7},
+        comparison: { prevDate: 'M', prevValue: 5, nextDate: 'W', nextValue: 12 },
+        img: 'https://s2.coinmarketcap.com/static/img/coins/200x200/3635.png' },
+  ];
+
+  private ETF: StockList[] = [
+    { assetName: 'ETF Xino CSI las vegas', ticker: '2TheMoOn', broker: 'DEGIRO', type: 'ETF', market: 'Riceland', ownedShares: 2,
+        value: 3049.2, totalValue: 6098.4, gains: 1647.57, gainsPercent: 27, delta: { up: true, value: 27},
+        comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 },
+        img: 'https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5aecccdf31358e612fb80afa%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D1234%26cropX2%3D3554%26cropY1%3D348%26cropY2%3D2667' },
+  ];
+
+  private getStockData(): StockList[] {
     return this.stocks;
   }
 
-  private getDataMonth(): StockList[] {
-    const getFirstDateInPeriod = () => {
-      const months = this.period.getMonths();
-
-      return months[months.length - 1];
-    };
-
-    return this.reduceData(this.period.getMonths(), getFirstDateInPeriod);
+  private getCryptoData(): StockList[] {
+    return this.cryptos;
   }
 
-  private getDataYear(): StockList[] {
-    const getFirstDateInPeriod = () => {
-      const years = this.period.getYears();
-
-      return `${parseInt(years[0], 10) - 1}`;
-    };
-
-    return this.reduceData(this.period.getYears(), getFirstDateInPeriod);
+  private getETFData(): StockList[] {
+    return this.ETF;
   }
 
   private reduceData(timePeriods: string[], getFirstDateInPeriod: () => string): StockList[] {
@@ -88,7 +98,7 @@ export class StockListService extends StockListData {
     }, []);
   }
 
-  getStockListData(period: string): Observable<StockList> {
-    return observableOf(this.data[period]);
+  getStockListData(type: string): Observable<StockList> {
+    return observableOf(this.data[type]);
   }
 }
