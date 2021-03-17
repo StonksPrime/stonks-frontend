@@ -9,6 +9,7 @@ import {
   NbIconModule,
   NbSelectModule,
   NbListModule,
+  NbAccordionModule,
 } from '@nebular/theme';
 
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -32,6 +33,7 @@ import { ThemeModule } from '../../@theme/theme.module';
     NbSelectModule,
     NbListModule,
     NgxEchartsModule,
+    NbAccordionModule,
   ],
   declarations: [
     PortfolioComponent,

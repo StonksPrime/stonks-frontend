@@ -22,6 +22,8 @@ export interface StockList {
     nextValue: number;
   };
   img: string;
+  BEP: number;
+  todayGains: number;
 }
 
 export abstract class StockListData {
