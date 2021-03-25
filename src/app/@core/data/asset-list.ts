@@ -22,6 +22,8 @@ export interface AssetList {
     nextValue: number;
   };
   img: string;
+  BEP: number;
+  todayGains: number;
 }
 
 export abstract class AssetListData {
