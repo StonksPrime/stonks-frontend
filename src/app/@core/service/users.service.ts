@@ -57,6 +57,25 @@ export class UserService extends UserData {
     return this.currentUserSubject.value;
   }
 
+  getUserByUsername(username: string) {
+    return this.http.get<any>(`${environment.apiUrl}/investors/${username}`)
+        .pipe(
+            map(response => {
+                const user: User = {
+                  id: response.id,
+                  username: username,
+                  first_name: response.first_name,
+                  last_name: response.last_name,
+                  full_name: response.first_name + ' ' + response.last_name,
+                  picture: response.profile_picture,
+               };
+                return user;
+            }),
+            // catchError(this.handleError)
+        );
+        // .subscribe( data => console.log('data'), error => console.log('error'))
+}
+
   login(username: string, password: string) {
       return this.http.post<any>(`${environment.apiUrl}/${environment.jwtLogin}`, { username, password })
           .pipe(
@@ -66,6 +85,7 @@ export class UserService extends UserData {
                   if (response.access) {
                       // store user details and jwt token in local storage to keep user logged in between pages
                       currentUser = jwt_decode(response.access);
+                      currentUser.id = response.id;
                       currentUser.username = username;
                       currentUser.first_name = response.first_name;
                       currentUser.last_name = response.last_name;

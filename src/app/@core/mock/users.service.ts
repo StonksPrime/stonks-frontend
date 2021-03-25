@@ -39,6 +39,10 @@ export class UserService extends UserData {
     { user: this.users.jack, type: this.types.mobile, time: this.time.setHours(8, 0)},
   ];
 
+  getUserByUsername(username: string): Observable<User> {
+    return observableOf(this.users.eva);
+  }
+
   login(username: string, password: string): Observable<User> {
     return observableOf(this.users.eva);
   }

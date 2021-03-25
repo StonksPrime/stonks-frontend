@@ -10,7 +10,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://stonks.marcpascu.com/api',
+  apiUrl: 'http://192.168.0.120:4321/api',
   jwtLogin: 'token-auth/',
   jwtRefresh: 'token-refresh/',
 };

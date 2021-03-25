@@ -137,13 +137,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Login/Register',
     icon: 'lock-outline',
-    link: '/pages/login',
+    link: '/pages/auth/login',
     data: {
       permission: 'view',
       resource: 'defaultGuestPermissions',
     },
   },
- /* {
+  {
     title: 'FEATURES',
     group: true,
   },
@@ -174,7 +174,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
-  {
+/*  {
     title: 'Forms',
     icon: 'edit-2-outline',
     children: [

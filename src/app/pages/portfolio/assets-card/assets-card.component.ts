@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { StockList, StockListData } from '../../../@core/data/stock-list';
+import { AssetList, AssetListData } from '../../../@core/data/asset-list';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
@@ -10,9 +10,9 @@ export class AssetsCardComponent implements OnDestroy {
 
   private alive = true;
 
-  stockListData: StockList;
-  cryptoListData: StockList;
-  ETFListData: StockList;
+  stockListData: AssetList;
+  cryptoListData: AssetList;
+  ETFListData: AssetList;
 
   assetType: string = 'stock';
   revealed = true;
@@ -20,7 +20,7 @@ export class AssetsCardComponent implements OnDestroy {
   ETFType = 'Exchange Traded Funds';
   cryptoType = 'Crypto Assets';
 
-  constructor(private stockListService: StockListData,
+  constructor(private assetListService: AssetListData,
               ) {
     this.getAssetsData('stock');
     this.getAssetsData('ETF');
@@ -32,7 +32,7 @@ export class AssetsCardComponent implements OnDestroy {
   }
 
   getAssetsData(assetType: string) {
-    this.stockListService.getStockListData(assetType)
+    this.assetListService.getAssetListData(assetType)
       .pipe(takeWhile(() => this.alive))
       .subscribe(assetListData => {
         switch (assetType) {

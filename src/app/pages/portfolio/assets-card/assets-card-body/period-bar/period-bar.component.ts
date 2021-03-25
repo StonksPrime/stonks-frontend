@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'period-bar',
+  selector: 'slab-period-bar',
   styleUrls: ['./period-bar.component.scss'],
   templateUrl: './period-bar.component.html',
 })

@@ -21,6 +21,7 @@ export interface RecentUsers extends Contacts {
 }
 
 export abstract class UserData {
+  abstract getUserByUsername(username: string): Observable<User>;
   abstract login(username: string, password: string): Observable<User>;
   abstract refreshToken(): Observable<User>;
   abstract logout();
