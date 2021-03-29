@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken, NbAuthOAuth2JWTToken, NbAuthJWTInterceptor, NB_AUTH_TOKEN_INTERCEPTOR_FILTER} from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
@@ -57,6 +57,7 @@ import { MockDataModule } from './mock/mock-data.module';
 import { AssetListService } from './mock/stock-list.service';
 import { RoleProvider } from './role.provider';
 import { AuthGuard } from './auth-guard.service';
+import { AuthJWTInterceptor } from './http.interceptor';
 
 
 const socialLinks = [
@@ -112,8 +113,17 @@ export const NB_CORE_PROVIDERS = [
   ...DATA_SERVICES,
   {
     provide: HTTP_INTERCEPTORS,
-    useClass: NbAuthJWTInterceptor,
+    useClass: AuthJWTInterceptor,
     multi: true,
+  },
+  {
+    provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
+    useValue: function (req: HttpRequest<any>) {
+      if (req.url.endsWith('/api/token-auth/')) {
+        return true;
+      }
+      return false;
+    },
   },
   { provide: NbRoleProvider, useClass: RoleProvider },
   AnalyticsService,
