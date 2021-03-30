@@ -1,20 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of as observableOf,  Observable } from 'rxjs';
 import { AssetList, AssetListData } from '../data/asset-list';
+import { environment } from '../../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AssetListService extends AssetListData {
 
-  private getRandom = (roundTo: number) => Math.round(Math.random() * roundTo);
   private data = {};
 
-  constructor() {
+  constructor(private http: HttpClient) {
     super();
-    this.data = {
-      stock: this.getStockData(),
-      ETF: this.getETFData(),
-      crypto: this.getCryptoData(),
-    };
   }
 
   private stocks: AssetList[] = [
@@ -35,7 +32,7 @@ export class AssetListService extends AssetListData {
   ];
 
   private cryptos: AssetList[] = [
-    { assetName: 'Bitcoin', ticker: 'BTC', broker: 'Kraken', type: 'crypto', market: 'Moon', ownedShares: 2,
+    { assetName: 'Bitcoinn', ticker: 'BTC', broker: 'Kraken', type: 'crypto', market: 'Moon', ownedShares: 2,
         value: 3049.2, totalValue: 6098.4, gains: 1647.57, gainsPercent: 27, delta: { up: true, value: 27},
         comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 },
         img: 'https://storage.googleapis.com/www-paredro-com/uploads/2019/04/bitcoin.jpg' , BEP: 12, todayGains: 15},
@@ -63,6 +60,17 @@ export class AssetListService extends AssetListData {
   }
 
   private getCryptoData(): AssetList[] {
+    const asset: Observable<any> = this.http.get<any>(`${environment.apiUrl}/investors/admin/positions/crypto`)
+        .pipe(
+            map(response => {
+              // console.log(response);
+                const assets: AssetList[] = response;
+                return assets;
+            }),
+            // catchError(this.handleError)
+        );
+        // .subscribe( data => console.log('data'), error => console.log('error'))
+    asset.subscribe();
     return this.cryptos;
   }
 
@@ -71,6 +79,11 @@ export class AssetListService extends AssetListData {
   }
 
   getAssetListData(type: string): Observable<AssetList> {
+    this.data = {
+      stock: this.getStockData(),
+      ETF: this.getETFData(),
+      crypto: this.getCryptoData(),
+    };
     return observableOf(this.data[type]);
   }
 }

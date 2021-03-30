@@ -12,8 +12,8 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/auth/auth.module')
       .then(m => m.SlabAuthModule),
   },*/
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  { path: '', redirectTo: 'pages/home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'pages/home' },
 ];
 
 const config: ExtraOptions = {

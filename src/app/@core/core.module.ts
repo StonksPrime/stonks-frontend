@@ -54,10 +54,11 @@ import { StatsProgressBarService } from './mock/stats-progress-bar.service';
 import { VisitorsAnalyticsService } from './mock/visitors-analytics.service';
 import { SecurityCamerasService } from './mock/security-cameras.service';
 import { MockDataModule } from './mock/mock-data.module';
-import { AssetListService } from './mock/stock-list.service';
+import { AssetListService } from './service/stock-list.service';
 import { RoleProvider } from './role.provider';
 import { AuthGuard } from './auth-guard.service';
 import { AuthJWTInterceptor } from './http.interceptor';
+import { environment } from '../../environments/environment';
 
 
 const socialLinks = [
@@ -100,13 +101,6 @@ const DATA_SERVICES = [
   { provide: SecurityCamerasData, useClass: SecurityCamerasService },
   { provide: AssetListData, useClass: AssetListService},
 ];
-
-/*export class NbSimpleRoleProvider extends NbRoleProvider {
-  getRole() {
-    // here you could provide any role based on any auth flow
-    return observableOf('guest');
-  }
-}*/
 
 export const NB_CORE_PROVIDERS = [
   ...MockDataModule.forRoot().providers,
@@ -157,9 +151,9 @@ export const NB_CORE_PROVIDERS = [
       strategies: [
         NbPasswordAuthStrategy.setup({
           name: 'email',
-          baseEndpoint: 'http://192.168.0.120:4321',
+          baseEndpoint: `${environment.apiUrl}`,
           login: {
-            endpoint: '/api/token-auth/',
+            endpoint: `/${environment.jwtLogin}`,
             redirect: {
               success: '/pages/dashboard',
               failure: null, // stay on the same page

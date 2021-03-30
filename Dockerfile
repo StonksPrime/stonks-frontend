@@ -13,7 +13,7 @@ COPY ./ /app/
 # Installs dependencies
 RUN npm ci
 # Build app
-RUN npm run build --prod
+RUN npm run build:prod
 # Move files to working dir
 # RUN mv /app/dist/* /app/dist/
 
