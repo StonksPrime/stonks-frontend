@@ -11,10 +11,6 @@ export interface AssetList {
   totalValue: number;
   gains: number;
   gainsPercent: number;
-  delta: {
-    up: boolean;
-    value: number;
-  };
   comparison: {
     prevDate: string;
     prevValue: number;
@@ -27,5 +23,5 @@ export interface AssetList {
 }
 
 export abstract class AssetListData {
-  abstract getAssetListData(period: string): Observable<AssetList>;
+  abstract getAssetListData(type: string): Observable <AssetList[]>;
 }

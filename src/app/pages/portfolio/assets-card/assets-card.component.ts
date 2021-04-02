@@ -10,9 +10,9 @@ export class AssetsCardComponent implements OnDestroy {
 
   private alive = true;
 
-  stockListData: AssetList;
-  cryptoListData: AssetList;
-  ETFListData: AssetList;
+  stockListData: AssetList[];
+  cryptoListData: AssetList[];
+  ETFListData: AssetList[];
 
   assetType: string = 'stock';
   revealed = true;

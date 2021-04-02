@@ -16,16 +16,16 @@
               </div>
             </span>
             <span> 
-              <period-bar [barData]="item.comparison" [successDelta]="item.delta.up"></period-bar>
+              <period-bar [barData]="item.comparison" [successDelta]="item.gains > 0"></period-bar>
             </span>
             <span class="monetary-container">
               <div>
                 {{ item.ownedShares }} shares * {{ item.value }} € = <span class="value">{{ item.totalValue }} € </span>
               </div>
               
-              <div class="delta" [class.up]="item.delta.up" [class.down]="!item.delta.up">
-                +{{ item.gains }}€
-                <nb-icon [icon]="item.delta.up ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+              <div class="delta " [ngClass]="{'up': item.gains > 0, 'down' : item.gains < 0}">
+                {{ item.gains }}€
+                <nb-icon [icon]="item.gains > 0 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
                 {{ item.gainsPercent }}% 
               </div>
             </span>
