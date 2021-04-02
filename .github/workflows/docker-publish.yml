@@ -33,14 +33,14 @@ jobs:
   #          docker-compose --file docker-compose.test.yml build
   #          docker-compose --file docker-compose.test.yml run sut
   #        else
-            docker build . --file Dockerfile
-          fi
+  #          docker build . --file Dockerfile
+  #        fi
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
   push:
     # Ensure test job passes before pushing image.
-    needs: test
+    #needs: test
 
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
