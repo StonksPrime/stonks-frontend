@@ -67,7 +67,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         } else {
           this.user = {};
         }
-
       });
 
     const { xl } = this.breakpointService.getBreakpointsMap();
@@ -92,10 +91,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       )
       .subscribe(title => {
         if (title === 'Log out') {
-          this.authService.logout('email').subscribe((result: NbAuthResult) => {
-            this.user = null;
-            // return this.menuService.navigateHome();
-          });
+          this.router.navigate(['pages/auth/logout']);
         }
       });
   }
