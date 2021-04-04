@@ -14,7 +14,6 @@ on:
   pull_request:
 
 env:
-  # TODO: Change variable to your image's name.
   IMAGE_NAME: stonks-frontend
 
 jobs:
@@ -48,9 +47,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image
-        env:
-          BACKEND_HOST: ${{ secrets.BACKEND_HOST }}
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+        run: docker build . --file Dockerfile --build-arg BACKEND_HOST=${{ secrets.BACKEND_HOST }}  --tag $IMAGE_NAME
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin

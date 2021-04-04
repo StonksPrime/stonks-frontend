@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators/map';
 import { NbRoleProvider } from '@nebular/security';
 import { NbAuthOAuth2JWTToken, NbAuthService } from '@nebular/auth';
 import { User, UserData } from './data/users';
+import { of } from 'rxjs';
 
 @Injectable()
 export class RoleProvider implements NbRoleProvider {
@@ -24,17 +25,17 @@ export class RoleProvider implements NbRoleProvider {
   }
 
   getRole(): Observable<string | string[]> {
-    return this.authService.onTokenChange()
-      .pipe(
-        map((token: NbAuthOAuth2JWTToken) => {
+    let result = 'guest';
+    this.authService.onTokenChange()
+      .subscribe((token: NbAuthOAuth2JWTToken) => {
           try {
-            const payload = token.getAccessTokenPayload();
+            const payload = token.getPayload();
             // return !!(token.isValid() && payload && payload['role']) ? this.getLowerCaseRoles(payload['role']) : 'user';
-            return !!(token.isValid() && payload ) ? 'user' : 'guest';
+            result = !!(token.isValid() && payload ) ? 'user' : 'guest';
           } catch (ex) {
-            return 'guest';
+            result = 'guest';
           }
-        }),
-      );
+        });
+    return of(result);
   }
 }

@@ -3,9 +3,11 @@ FROM node:12.13.0 as build
 
 ARG ENV=prod
 ARG APP=stonks-frontend
+ARG BACKEND_HOST
 
 ENV ENV ${ENV}
 ENV APP ${APP}
+ENV BACKEND_HOST ${BACKEND_HOST}
 
 WORKDIR /app
 COPY ./ /app/
