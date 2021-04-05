@@ -24,11 +24,14 @@ const routes: Routes = [{
     },
     {
       path: 'iot-dashboard',
+      canActivate: [AuthGuard],
       component: DashboardComponent,
     },
     {
       path: 'portfolio',
-      component: PortfolioComponent,
+      canActivate: [AuthGuard],
+      loadChildren: () => import('./portfolio/portfolio.module')
+        .then(m => m.PortfolioModule),
     },
     {
       path: 'auth',

@@ -20,6 +20,11 @@ import { AssetListItemComponent } from './assets-card/assets-card-body/asset-lis
 import { AssetCardsHeaderComponent } from './assets-card/assets-card-header/asset-cards-header.component';
 
 import { ThemeModule } from '../../@theme/theme.module';
+import { PortfolioRoutingModule } from './portfolio-routing.module';
+import { PortfolioStockComponent } from './stock/portfolio-stock.component';
+import { PortfolioAllComponent } from './all-assets/portfolio-all.component';
+import { PortfolioETFComponent } from './etf/portfolio-etf.component';
+import { PortfolioCryptoComponent } from './crypto/portfolio-crypto.component';
 
 @NgModule({
   imports: [
@@ -28,15 +33,18 @@ import { ThemeModule } from '../../@theme/theme.module';
     NbButtonModule,
     NbInputModule,
     NbCheckboxModule,
-    ReactiveFormsModule,
     NbIconModule,
     NbSelectModule,
     NbListModule,
-    NgxEchartsModule,
     NbAccordionModule,
+    PortfolioRoutingModule,
   ],
   declarations: [
     PortfolioComponent,
+    PortfolioStockComponent,
+    PortfolioAllComponent,
+    PortfolioETFComponent,
+    PortfolioCryptoComponent,
     AssetsCardComponent,
     AssetListItemComponent,
     PeriodBarComponent,
