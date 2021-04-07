@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
-import { LoginComponent} from './login/login.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { AuthGuard } from '../@core/auth-guard.service';
 
 const routes: Routes = [{
   path: '',
@@ -19,19 +19,24 @@ const routes: Routes = [{
     },
     {
       path: 'dashboard',
+      canActivate: [AuthGuard],
       component: ECommerceComponent,
     },
     {
       path: 'iot-dashboard',
+      canActivate: [AuthGuard],
       component: DashboardComponent,
     },
     {
       path: 'portfolio',
-      component: PortfolioComponent,
+      canActivate: [AuthGuard],
+      loadChildren: () => import('./portfolio/portfolio.module')
+        .then(m => m.PortfolioModule),
     },
     {
-      path: 'login',
-      component: LoginComponent,
+      path: 'auth',
+      loadChildren: () => import('./auth/auth.module')
+        .then(m => m.SlabAuthModule),
     },
     {
       path: 'layout',
@@ -83,11 +88,11 @@ const routes: Routes = [{
       loadChildren: () => import('./miscellaneous/miscellaneous.module')
         .then(m => m.MiscellaneousModule),
     },
-    {
-      path: '',
-      redirectTo: 'dashboard',
-      pathMatch: 'full',
-    },
+//    {
+//      path: '',
+//      redirectTo: 'dashboard',
+//      pathMatch: 'full',
+//    },
     {
       path: '**',
       component: NotFoundComponent,

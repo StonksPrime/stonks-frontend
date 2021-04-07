@@ -8,11 +8,38 @@
               <div class="img-container">
                 <img class="stock-picture image" src="{{ item.img }}">
               </div>
+<<<<<<< HEAD
             
               <div class="name-container">
                 <div class="stock-name">{{ item.assetName }} ( {{ item.ticker }} )</div>
                 <div class="stock-info"> {{ item.market }} | {{ item.broker }} </div>
               </div>
+=======
+            </span>
+            <span> 
+              <period-bar [barData]="item.comparison" [successDelta]="item.gains > 0"></period-bar>
+            </span>
+            <span class="monetary-container">
+              <div>
+                {{ item.ownedShares }} shares * {{ item.value }} € = <span class="value">{{ item.totalValue }} € </span>
+              </div>
+              
+              <div class="delta " [ngClass]="{'up': item.gains > 0, 'down' : item.gains < 0}">
+                {{ item.gains }}€
+                <nb-icon [icon]="item.gains > 0 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+                {{ item.gainsPercent }}% 
+              </div>
+            </span>
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <div class="container-fluid">
+          <div class="row" style="align-items: center;">
+            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+              Nº: {{ item.ownedShares }}
+            </div>
+            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+              G/P: {{ item.gains }}€
+>>>>>>> 1409b00f633c9ba7e632212ff0acacb96aebcadc
             </div>
           </span>
           <span> 

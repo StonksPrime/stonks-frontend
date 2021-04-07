@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { of as observableOf,  Observable } from 'rxjs';
-import { PeriodsService } from './periods.service';
-import { StockList, StockListData } from '../data/stock-list';
+import { AssetList, AssetListData } from '../data/asset-list';
 
 @Injectable()
-export class StockListService extends StockListData {
+export class AssetListService extends AssetListData {
 
   private getRandom = (roundTo: number) => Math.round(Math.random() * roundTo);
   private data = {};
 
-  constructor(private period: PeriodsService) {
+  constructor() {
     super();
     this.data = {
       stock: this.getStockData(),
@@ -18,7 +17,7 @@ export class StockListService extends StockListData {
     };
   }
 
-  private stocks: StockList[] = [
+  private stocks: AssetList[] = [
     { assetName: 'Amazon', ticker: 'AMZN', broker: 'DEGIRO', type: 'stock', market: 'Nasdaq', ownedShares: 2,
         value: 3049.2, totalValue: 6098.4, gains: 1647.57, gainsPercent: 27, delta: { up: true, value: 27},
         comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 },
@@ -35,7 +34,7 @@ export class StockListService extends StockListData {
         , BEP: 12, todayGains: 15 },
   ];
 
-  private cryptos: StockList[] = [
+  private cryptos: AssetList[] = [
     { assetName: 'Bitcoin', ticker: 'BTC', broker: 'Kraken', type: 'crypto', market: 'Moon', ownedShares: 2,
         value: 3049.2, totalValue: 6098.4, gains: 1647.57, gainsPercent: 27, delta: { up: true, value: 27},
         comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 },
@@ -51,7 +50,7 @@ export class StockListService extends StockListData {
         img: 'https://s2.coinmarketcap.com/static/img/coins/200x200/3635.png' , BEP: 12, todayGains: 15 },
   ];
 
-  private ETF: StockList[] = [
+  private ETF: AssetList[] = [
     { assetName: 'ETF Xino CSI las vegas', ticker: '2TheMoOn', broker: 'DEGIRO', type: 'ETF', market: 'Riceland', ownedShares: 2,
         value: 3049.2, totalValue: 6098.4, gains: 1647.57, gainsPercent: 27, delta: { up: true, value: 27},
         comparison: { prevDate: 'M', prevValue: -15, nextDate: 'W', nextValue: 12 },
@@ -59,50 +58,19 @@ export class StockListService extends StockListData {
         , BEP: 12, todayGains: 15 },
   ];
 
-  private getStockData(): StockList[] {
+  private getStockData(): AssetList[] {
     return this.stocks;
   }
 
-  private getCryptoData(): StockList[] {
+  private getCryptoData(): AssetList[] {
     return this.cryptos;
   }
 
-  private getETFData(): StockList[] {
+  private getETFData(): AssetList[] {
     return this.ETF;
   }
 
-  private reduceData(timePeriods: string[], getFirstDateInPeriod: () => string): StockList[] {
-    return timePeriods.reduce((result, timePeriod, index) => {
-      const hasResult = result[index - 1];
-      const prevDate = hasResult ?
-        result[index - 1].comparison.nextDate :
-        getFirstDateInPeriod();
-      const prevValue = hasResult ?
-        result[index - 1].comparison.nextValue :
-        this.getRandom(100);
-      const nextValue = this.getRandom(100);
-      const deltaValue = prevValue - nextValue;
-
-      const item = {
-        date: timePeriod,
-        value: this.getRandom(1000),
-        delta: {
-          up: deltaValue <= 0,
-          value: Math.abs(deltaValue),
-        },
-        comparison: {
-          prevDate,
-          prevValue,
-          nextDate: timePeriod,
-          nextValue,
-        },
-      };
-
-      return [...result, item];
-    }, []);
-  }
-
-  getStockListData(type: string): Observable<StockList> {
+  getAssetListData(type: string): Observable<AssetList> {
     return observableOf(this.data[type]);
   }
 }

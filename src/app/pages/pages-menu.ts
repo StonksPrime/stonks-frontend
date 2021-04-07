@@ -30,22 +30,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'All assets',
-        link: '/pages/portfolio',
-        icon: 'trending-up-outline',
+        link: '/pages/portfolio/all',
+        icon: 'briefcase-outline',
       },
       {
-        title: 'Stocks',
-        link: '/pages/portfolio',
+        title: 'Stock',
+        link: '/pages/portfolio/stock',
         icon: 'trending-up-outline',
       },
       {
         title: 'ETF',
-        link: '/pages/portfolio',
+        link: '/pages/portfolio/etf',
         icon: 'trending-up-outline',
       },
       {
         title: 'Crypto',
-        link: '/pages/portfolio',
+        link: '/pages/portfolio/crypto',
         icon: 'trending-up-outline',
       },
     ],
@@ -137,23 +137,35 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Login/Register',
     icon: 'lock-outline',
-    link: '/pages/login',
+    link: '/pages/auth/login',
     data: {
       permission: 'view',
       resource: 'defaultGuestPermissions',
     },
   },
- /* {
+  {
     title: 'FEATURES',
     group: true,
+    data: {
+      permission: 'view',
+      resource: 'defaultGuestPermissions',
+    },
   },
   {
     title: 'Layout',
     icon: 'layout-outline',
+    data: {
+      permission: 'view',
+      resource: 'defaultGuestPermissions',
+    },
     children: [
       {
         title: 'Stepper',
         link: '/pages/layout/stepper',
+        data: {
+          permission: 'view',
+          resource: 'defaultGuestPermissions',
+        },
       },
       {
         title: 'List',
@@ -174,7 +186,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
-  {
+/*  {
     title: 'Forms',
     icon: 'edit-2-outline',
     children: [

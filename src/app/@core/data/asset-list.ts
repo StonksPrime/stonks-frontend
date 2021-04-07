@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-export interface StockList {
+export interface AssetList {
   assetName: string;
   ticker: string;
   broker: string;
@@ -11,10 +11,6 @@ export interface StockList {
   totalValue: number;
   gains: number;
   gainsPercent: number;
-  delta: {
-    up: boolean;
-    value: number;
-  };
   comparison: {
     prevDate: string;
     prevValue: number;
@@ -26,6 +22,6 @@ export interface StockList {
   todayGains: number;
 }
 
-export abstract class StockListData {
-  abstract getStockListData(period: string): Observable<StockList>;
+export abstract class AssetListData {
+  abstract getAssetListData(type: string): Observable <AssetList[]>;
 }

@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
-import { UserData } from '../../../@core/data/users';
+import { User, UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { getDeepFromObject, NbAuthJWTToken, NbAuthOAuth2JWTToken, NbAuthResult, NbAuthService } from '@nebular/auth';
 
 @Component({
   selector: 'ngx-header',
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
-  user: any;
+  user: {};
 
   themes = [
     {
@@ -41,8 +42,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
 
+  strategy: string = '';
+
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
+              private authService: NbAuthService,
               private themeService: NbThemeService,
               private router: Router,
               private userService: UserData,
@@ -53,10 +57,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
-    this.userService.getLoggedInUser()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((loggedUser: any) => this.user = loggedUser);
-    this.user = null;
+    this.authService.onTokenChange()
+      .subscribe((token: NbAuthOAuth2JWTToken) => {
+        if (token.isValid()) {
+          const username = token.getAccessTokenPayload().username; // here we receive a payload from the token and assigns it to our `user` variable
+          this.userService.getUserByUsername(username).subscribe((userData: User) => {
+            this.user = userData;
+          });
+        } else {
+          this.user = {};
+        }
+      });
+
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
@@ -79,9 +91,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       )
       .subscribe(title => {
         if (title === 'Log out') {
-          this.userService.logout();
-          this.menuService.navigateHome();
-          this.user = null;
+          this.router.navigate(['pages/auth/logout']);
         }
       });
   }
@@ -108,7 +118,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateLogin() {
-    this.router.navigate(['pages/login']);
+    this.router.navigate(['pages/auth/login']);
     return false;
   }
 }

@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { HttpClientModule, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { NbAuthModule, NbDummyAuthStrategy } from '@nebular/auth';
+import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken, NbAuthOAuth2JWTToken, NbAuthJWTInterceptor, NB_AUTH_TOKEN_INTERCEPTOR_FILTER} from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
 
@@ -31,7 +32,7 @@ import { CountryOrderData } from './data/country-order';
 import { StatsProgressBarData } from './data/stats-progress-bar';
 import { VisitorsAnalyticsData } from './data/visitors-analytics';
 import { SecurityCamerasData } from './data/security-cameras';
-import { StockListData } from './data/stock-list';
+import { AssetListData } from './data/asset-list';
 
 import { UserService } from './service/users.service';
 import { ElectricityService } from './mock/electricity.service';
@@ -53,7 +54,12 @@ import { StatsProgressBarService } from './mock/stats-progress-bar.service';
 import { VisitorsAnalyticsService } from './mock/visitors-analytics.service';
 import { SecurityCamerasService } from './mock/security-cameras.service';
 import { MockDataModule } from './mock/mock-data.module';
-import { StockListService } from './mock/stock-list.service';
+import { AssetListService } from './service/stock-list.service';
+import { RoleProvider } from './role.provider';
+import { AuthGuard } from './auth-guard.service';
+import { AuthJWTInterceptor } from './http.interceptor';
+import { environment } from '../../environments/environment';
+
 
 const socialLinks = [
   {
@@ -93,67 +99,150 @@ const DATA_SERVICES = [
   { provide: StatsProgressBarData, useClass: StatsProgressBarService },
   { provide: VisitorsAnalyticsData, useClass: VisitorsAnalyticsService },
   { provide: SecurityCamerasData, useClass: SecurityCamerasService },
-  { provide: StockListData, useClass: StockListService},
+  { provide: AssetListData, useClass: AssetListService},
 ];
-
-export class NbSimpleRoleProvider extends NbRoleProvider {
-  getRole() {
-    // here you could provide any role based on any auth flow
-    return observableOf('guest');
-  }
-}
 
 export const NB_CORE_PROVIDERS = [
   ...MockDataModule.forRoot().providers,
   ...DATA_SERVICES,
-  ...NbAuthModule.forRoot({
-
-    strategies: [
-      NbDummyAuthStrategy.setup({
-        name: 'email',
-        delay: 3000,
-      }),
-    ],
-    forms: {
-      login: {
-        socialLinks: socialLinks,
-      },
-      register: {
-        socialLinks: socialLinks,
-      },
-    },
-  }).providers,
-
-  NbSecurityModule.forRoot({
-    accessControl: {
-      guest: {
-        view: '*',
-      },
-      user: {
-        parent: 'guest',
-        create: '*',
-        edit: '*',
-        remove: '*',
-      },
-    },
-  }).providers,
-
   {
-    provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthJWTInterceptor,
+    multi: true,
   },
+  {
+    provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
+    useValue: function (req: HttpRequest<any>) {
+      if (req.url.endsWith('/api/token-auth/')) {
+        return true;
+      }
+      return false;
+    },
+  },
+  { provide: NbRoleProvider, useClass: RoleProvider },
   AnalyticsService,
   LayoutService,
   PlayerService,
   SeoService,
   StateService,
+  AuthGuard,
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    NbSecurityModule.forRoot({
+      accessControl: {
+        guest: {
+          view: ['defaultGuestPermissions'],
+        },
+        user: {
+          create: 'comments',
+          view: ['defaultUserPermissions'],
+        },
+        moderator: {
+          parent: 'user',
+          create: '*',
+          remove: '*',
+        },
+      },
+    }),
+    NbAuthModule.forRoot({
+      strategies: [
+        NbPasswordAuthStrategy.setup({
+          name: 'email',
+          baseEndpoint: `${environment.apiUrl}`,
+          login: {
+            endpoint: `/${environment.jwtLogin}`,
+            redirect: {
+              success: '/pages/dashboard',
+              failure: null, // stay on the same page
+            },
+          },
+
+          logout: {
+            endpoint: '',
+            redirect: {
+              success: '/pages/home',
+              failure: null, // stay on the same page
+            },
+          },
+
+          refreshToken: {
+            endpoint: '/api/token-refresh/',
+          },
+          token: {
+            class: NbAuthOAuth2JWTToken,
+            key: 'token', // this parameter tells where to look for the token
+          },
+        }),
+      ],
+
+      forms: {
+        login: {
+          redirectDelay: 500, // delay before redirect after a successful login, while success message is shown to the user
+          strategy: 'email',  // strategy id key.
+          rememberMe: true,   // whether to show or not the `rememberMe` checkbox
+          showMessages: {     // show/not show success/error messages
+            success: true,
+            error: true,
+          },
+          socialLinks: socialLinks, // social links at the bottom of a page
+        },
+        register: {
+          redirectDelay: 500,
+          strategy: 'email',
+          showMessages: {
+            success: true,
+            error: true,
+          },
+          terms: true,
+          socialLinks: socialLinks,
+        },
+        requestPassword: {
+          redirectDelay: 500,
+          strategy: 'email',
+          showMessages: {
+            success: true,
+            error: true,
+          },
+          socialLinks: socialLinks,
+        },
+        resetPassword: {
+          redirectDelay: 500,
+          strategy: 'email',
+          showMessages: {
+            success: true,
+            error: true,
+          },
+          socialLinks: socialLinks,
+        },
+        logout: {
+          redirectDelay: 500,
+          strategy: 'email',
+        },
+        validation: {
+          password: {
+            required: true,
+            minLength: 4,
+            maxLength: 50,
+          },
+          email: {
+            required: true,
+          },
+          fullName: {
+            required: false,
+            minLength: 4,
+            maxLength: 50,
+          },
+        },
+
+      },
+    }),
   ],
   exports: [
     NbAuthModule,
+    HttpClientModule,
   ],
   declarations: [],
 })
