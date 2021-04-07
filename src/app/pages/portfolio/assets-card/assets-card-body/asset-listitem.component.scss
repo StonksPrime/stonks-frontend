@@ -5,6 +5,10 @@
 @include nb-install-component() {
   overflow: auto;
 
+  nb-list-item{
+    padding:0rem
+  }
+
   .item {
     display: flex;
     justify-content: space-between;
