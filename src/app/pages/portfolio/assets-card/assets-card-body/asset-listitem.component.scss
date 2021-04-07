@@ -6,7 +6,7 @@
   overflow: auto;
 
   nb-list-item {
-    padding: 0 rem;
+    padding: 0;
   }
 
   .item {
@@ -106,6 +106,7 @@
     justify-content: right;
     text-align: right;
     align-content: right;
+    padding-right: inherit;
   }
 
   .info-price {
