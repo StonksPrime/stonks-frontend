@@ -58,7 +58,7 @@ export class UserService extends UserData {
   }
 
   getUserByUsername(username: string) {
-    return this.http.get<any>(`${environment.apiUrl}/investors/${username}`)
+    return this.http.get<any>(`${environment.apiUrl}/investors/${username}/`)
         .pipe(
             map(response => {
                 const user: User = {
