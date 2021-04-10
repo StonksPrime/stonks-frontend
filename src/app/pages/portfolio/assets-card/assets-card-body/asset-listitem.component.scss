@@ -46,6 +46,7 @@
     height: 70px;
     width: 70px;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     overflow: hidden;
     position: relative;
@@ -84,7 +85,7 @@
     font-size: larger;
   }
   .stock-name {
-    font-size: large;
+    font-size: medium;
   }
 
   .stock-info {
