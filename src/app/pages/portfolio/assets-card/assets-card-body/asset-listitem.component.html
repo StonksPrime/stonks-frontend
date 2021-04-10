@@ -20,12 +20,12 @@
             </span-->
             <span class="monetary-container">
               <div>
-                {{ item.value }} € * {{ item.ownedShares }} = <span class="value">{{ item.totalValue }} € </span>
+                <span class="d-none d-lg-inline-block">{{ item.value }} € * {{ item.ownedShares }} = </span><span class="value">{{ item.totalValue }} € </span>
               </div>
               
               <div class="delta " [ngClass]="{'up': item.gains > 0, 'down' : item.gains < 0}">
-                {{ item.gains }}€
                 <nb-icon [icon]="item.gains > 0 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+                {{ item.gains }}€
                 {{ item.gainsPercent }}% 
               </div>
             </span>

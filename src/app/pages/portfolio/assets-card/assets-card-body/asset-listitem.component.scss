@@ -42,9 +42,14 @@
     align-items: center;
   }
 
+  nb-accordion-item-header {
+    padding: 0.4rem;
+    padding-right: 1.25rem;
+  }
+
   .img-container {
-    height: 70px;
-    width: 70px;
+    height: 4rem;
+    width: 4rem;
     display: flex;
     flex-shrink: 0;
     justify-content: center;
@@ -52,7 +57,7 @@
     position: relative;
     border: solid 1px  #edf1f7;
     background-color: #edf1f7;
-    border-radius: 6px;
+    border-radius: 10px;
     object-fit: cover;
   }
   .stock-picture {
@@ -63,7 +68,7 @@
       display:block;
       margin:auto;
       position: absolute;
-      max-width: 70%;
+      max-width: 80%;
       height: auto;
       width: auto;
       object-fit: cover;
