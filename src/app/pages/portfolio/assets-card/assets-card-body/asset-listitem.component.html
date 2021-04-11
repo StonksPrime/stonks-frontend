@@ -5,10 +5,12 @@
         <nb-accordion-item-header class="item">
             <span>
               <div class="stock-container">
-                <div class="img-container">
+                <div *ngIf="item.img" class="img-container">
                   <img class="stock-picture image" src="{{ item.img }}">
                 </div>
-              
+                <div *ngIf="!item.img" class="img-container">
+                  {{ item.ticker }}
+                </div>
                 <div class="name-container">
                   <div class="stock-name">{{ item.assetName }} ( {{ item.ticker }} )</div>
                   <div class="stock-info"> {{ item.market }} | {{ item.broker }} </div>
@@ -25,7 +27,7 @@
               
               <div class="delta " [ngClass]="{'up': item.gains > 0, 'down' : item.gains < 0}">
                 <nb-icon [icon]="item.gains > 0 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
-                {{ item.gains }}€
+                <span class="d-none d-lg-inline-block">{{ item.gains }}€</span>
                 {{ item.gainsPercent }}% 
               </div>
             </span>
