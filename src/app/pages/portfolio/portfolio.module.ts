@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import {PortfolioComponent} from './portfolio.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
@@ -11,8 +10,6 @@ import {
   NbListModule,
   NbAccordionModule,
 } from '@nebular/theme';
-
-import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AssetsCardComponent } from './assets-card/assets-card.component';
 import { PeriodBarComponent } from './assets-card/assets-card-body/period-bar/period-bar.component';

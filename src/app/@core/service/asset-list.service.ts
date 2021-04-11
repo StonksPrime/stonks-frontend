@@ -15,7 +15,7 @@ export class AssetListService extends AssetListData {
   }
 
   private getStockData(): Observable <AssetList[]> {
-    return this.http.get<any>(`${environment.apiUrl}/investors/admin/positions/stock`)
+    return this.http.get<any>(`${environment.apiUrl}${environment.backendUrl}/investors/admin/positions/stock`)
         .pipe(
             map(response => {
                 // console.log(response);
@@ -27,7 +27,7 @@ export class AssetListService extends AssetListData {
   }
 
   private getCryptoData(): Observable <AssetList[]> {
-    return this.http.get<any>(`${environment.apiUrl}/investors/admin/positions/crypto`)
+    return this.http.get<any>(`${environment.apiUrl}${environment.backendUrl}/investors/admin/positions/crypto`)
         .pipe(
             map(response => {
                 // console.log(response);
@@ -40,7 +40,7 @@ export class AssetListService extends AssetListData {
   }
 
   private getETFData(): Observable <AssetList[]> {
-    return this.http.get<any>(`${environment.apiUrl}/investors/admin/positions/etf`)
+    return this.http.get<any>(`${environment.apiUrl}${environment.backendUrl}/investors/admin/positions/etf`)
     .pipe(
         map(response => {
             // console.log(response);

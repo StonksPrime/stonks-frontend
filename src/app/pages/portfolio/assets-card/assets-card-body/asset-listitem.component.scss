@@ -15,7 +15,7 @@
     align-items: center;
 
     > * {
-      flex: 1;
+      flex: 1 1 auto;
     }
 
     &:first-child {
@@ -113,8 +113,11 @@
     @include nb-rtl(margin-right, 0.5rem);
     justify-content: right;
     text-align: right;
+    flex-basis: content;
     align-content: right;
     padding-right: inherit;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .info-price {

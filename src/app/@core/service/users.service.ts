@@ -58,7 +58,7 @@ export class UserService extends UserData {
   }
 
   getUserByUsername(username: string) {
-    return this.http.get<any>(`${environment.apiUrl}/investors/${username}/`)
+    return this.http.get<any>(`${environment.apiUrl}/backend/api/investors/${username}/`)
         .pipe(
             map(response => {
                 const user: User = {
@@ -77,7 +77,7 @@ export class UserService extends UserData {
 }
 
   login(username: string, password: string) {
-      return this.http.post<any>(`${environment.apiUrl}/${environment.jwtLogin}`, { username, password })
+      return this.http.post<any>(`${environment.apiUrl}/backend/api/${environment.jwtLogin}`, { username, password })
           .pipe(
               map(response => {
                   // login successful if there's a jwt token in the response
@@ -105,7 +105,7 @@ export class UserService extends UserData {
 
   refreshToken() {
       const refreshToken = this.currentUserValue.refreshToken;
-      return this.http.post<any>(`${environment.apiUrl}/${environment.jwtRefresh}`, { 'refresh': refreshToken })
+      return this.http.post<any>(`${environment.apiUrl}/backend/api/${environment.jwtRefresh}`, { 'refresh': refreshToken })
           .pipe(
               map(response => {
                   // login successful if there's a jwt token in the response

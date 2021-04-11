@@ -54,11 +54,13 @@ import { StatsProgressBarService } from './mock/stats-progress-bar.service';
 import { VisitorsAnalyticsService } from './mock/visitors-analytics.service';
 import { SecurityCamerasService } from './mock/security-cameras.service';
 import { MockDataModule } from './mock/mock-data.module';
-import { AssetListService } from './service/stock-list.service';
+import { AssetListService } from './service/asset-list.service';
 import { RoleProvider } from './role.provider';
 import { AuthGuard } from './auth-guard.service';
 import { AuthJWTInterceptor } from './http.interceptor';
 import { environment } from '../../environments/environment';
+import { AssetPriceData } from './data/asset-price';
+import { AssetPriceService } from './service/asset-price.service';
 
 
 const socialLinks = [
@@ -100,6 +102,7 @@ const DATA_SERVICES = [
   { provide: VisitorsAnalyticsData, useClass: VisitorsAnalyticsService },
   { provide: SecurityCamerasData, useClass: SecurityCamerasService },
   { provide: AssetListData, useClass: AssetListService},
+  { provide: AssetPriceData, useClass: AssetPriceService},
 ];
 
 export const NB_CORE_PROVIDERS = [
@@ -151,7 +154,7 @@ export const NB_CORE_PROVIDERS = [
       strategies: [
         NbPasswordAuthStrategy.setup({
           name: 'email',
-          baseEndpoint: `${environment.apiUrl}`,
+          baseEndpoint: `${environment.apiUrl}${environment.backendUrl}`,
           login: {
             endpoint: `/${environment.jwtLogin}`,
             redirect: {
@@ -169,7 +172,7 @@ export const NB_CORE_PROVIDERS = [
           },
 
           refreshToken: {
-            endpoint: '/api/token-refresh/',
+            endpoint: `${environment.backendUrl}/token-refresh/`,
           },
           token: {
             class: NbAuthOAuth2JWTToken,

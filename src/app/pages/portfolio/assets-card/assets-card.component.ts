@@ -11,7 +11,7 @@ export class AssetsCardComponent implements OnDestroy {
   private alive = true;
 
   @Input() assetType: String;
-  @Input() assetListData: AssetList;
+  @Input() assetListData: AssetList[];
 
   constructor( ) {
   }
