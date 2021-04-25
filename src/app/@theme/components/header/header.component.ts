@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
 import { User, UserData } from '../../../@core/data/users';
@@ -6,7 +6,8 @@ import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { getDeepFromObject, NbAuthJWTToken, NbAuthOAuth2JWTToken, NbAuthResult, NbAuthService } from '@nebular/auth';
+import { NbAuthOAuth2JWTToken, NbAuthService } from '@nebular/auth';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ngx-header',
@@ -40,7 +41,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [ { title: 'Profile', data: { id: 'profile'} }, { title: 'Log out', data: { id: 'logout'} } ];
 
   strategy: string = '';
 
@@ -51,12 +52,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private router: Router,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              public translate: TranslateService,
+              private cdr: ChangeDetectorRef) {
+                this.translate.onLangChange.subscribe((params: LangChangeEvent) => {
+                  this.cdr.detectChanges();
+                  this.refreshLanguage();
+                });
   }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
+    this.refreshLanguage();
     this.authService.onTokenChange()
       .subscribe((token: NbAuthOAuth2JWTToken) => {
         if (token.isValid()) {
@@ -87,10 +95,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.menuService.onItemClick()
       .pipe(
         // filter(({ tag }) => tag === 'my-context-menu'),
-        map(({ item: { title } }) => title),
+        map(({ item: { data: { id} } }) => id),
       )
-      .subscribe(title => {
-        if (title === 'Log out') {
+      .subscribe(id => {
+        if (id === 'logout') {
           this.router.navigate(['pages/auth/logout']);
         }
       });
@@ -103,6 +111,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   changeTheme(themeName: string) {
     this.themeService.changeTheme(themeName);
+  }
+
+  selectLanguage(lang: string) {
+    this.translate.use(lang);
+  }
+
+  refreshLanguage() {
+    this.translate.get('HEADER.profile').subscribe((res: string) => {
+      this.userMenu[0].title = res; });
+    this.translate.get('HEADER.logout').subscribe((res: string) => {
+      this.userMenu[1].title = res; });
   }
 
   toggleSidebar(): boolean {

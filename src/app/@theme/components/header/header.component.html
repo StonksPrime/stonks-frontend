@@ -12,7 +12,11 @@
 
 <div class="header-container">
   <nb-actions size="small">
-
+    <nb-action class="control-item">
+      <nb-select #langSelect [selected]="translate.currentLang" (selectedChange)="selectLanguage($event)">
+        <nb-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{ lang }}</nb-option>
+      </nb-select>
+    </nb-action>
     <nb-action class="control-item">
       <nb-search type="rotate-layout"></nb-search>
     </nb-action>

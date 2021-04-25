@@ -2,28 +2,31 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Home',
+    title: 'home',
     icon: 'home-outline',
     link: '/pages/home',
     home: true,
     data: {
+      translationId: 'home',
       permission: 'view',
       resource: 'defaultGuestPermissions',
     },
   },
   {
-    title: 'Dashboard',
+    title: 'dashboard',
     icon: 'bar-chart',
     link: '/pages/dashboard',
     data: {
+      translationId: 'dashboard',
       permission: 'view',
       resource: 'defaultUserPermissions',
     },
   },
   {
-    title: 'My Portfolio',
+    title: 'my-portfolio',
     icon: 'list-outline',
     data: {
+      translationId: 'my-portfolio',
       permission: 'view',
       resource: 'defaultUserPermissions',
     },
@@ -51,10 +54,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'My Squads',
+    title: 'my-squads',
     icon: 'people-outline',
     link: '/pages/home',
     data: {
+      translationId: 'my-squads',
       permission: 'view',
       resource: 'defaultUserPermissions',
     },
@@ -71,10 +75,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Discover',
+    title: 'discover',
     icon: 'compass-outline',
     link: '/pages/home',
     data: {
+      translationId: 'discover',
       permission: 'view',
       resource: 'defaultUserPermissions',
     },
@@ -108,28 +113,31 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Rankings',
+    title: 'rankings',
     icon: 'award-outline',
     link: '/pages/home',
     data: {
+      translationId: 'rankings',
       permission: 'view',
       resource: 'defaultUserPermissions',
     },
   },
   {
-    title: 'Blackboard',
+    title: 'blackboard',
     icon: 'clipboard-outline',
     link: '/pages/home',
     data: {
+      translationId: 'blackboard',
       permission: 'view',
       resource: 'defaultUserPermissions',
     },
   },
   {
-    title: 'Today\'s higlights',
+    title: 'today-highlights',
     icon: 'shopping-cart-outline',
     link: '/pages/iot-dashboard',
     data: {
+      translationId: 'today-highlights',
       permission: 'view',
       resource: 'defaultUserPermissions',
     },
@@ -139,6 +147,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'lock-outline',
     link: '/pages/auth/login',
     data: {
+      translationId: 'login',
       permission: 'view',
       resource: 'defaultGuestPermissions',
     },

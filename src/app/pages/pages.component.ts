@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NbAccessChecker } from '@nebular/security';
 import { NbMenuItem } from '@nebular/theme';
-
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import {  ChangeDetectorRef } from '@angular/core';
 import { MENU_ITEMS } from './pages-menu';
 
 @Component({
@@ -17,16 +18,30 @@ import { MENU_ITEMS } from './pages-menu';
 export class PagesComponent implements OnInit {
 
   menu = MENU_ITEMS;
-  constructor(private accessChecker: NbAccessChecker) {
+  constructor(private accessChecker: NbAccessChecker,
+              public translate: TranslateService,
+              private cdr: ChangeDetectorRef,
+    ) {
+      this.translate.onLangChange.subscribe((params: LangChangeEvent) => { this.translateMenuItems(); });
+      this.translate.onLangChange.subscribe((params: LangChangeEvent) => { this.cdr.detectChanges(); });
   }
 
   ngOnInit() {
     this.authMenuItems();
+    this.translateMenuItems();
   }
 
   authMenuItems() {
     this.menu.forEach(item => {
       this.authMenuItem(item);
+    });
+  }
+
+  translateMenuItems() {
+    this.menu.forEach(item => {
+        this.translate.get('MENU.' + item.data.translationId).subscribe((res: string) => {
+          item.title = res;
+        });
     });
   }
 

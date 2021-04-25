@@ -5,7 +5,7 @@
         <nb-accordion-item-header class="item">
             <span>
               <div class="stock-container">
-                <div *ngIf="item.img" class="img-container">
+                <div *ngIf="item.img" class="img-container" (click)="updatePrices()">
                   <img class="stock-picture image" src="{{ item.img }}">
                 </div>
                 <div *ngIf="!item.img" class="img-container">
@@ -22,7 +22,7 @@
             </span-->
             <span class="monetary-container">
               <div>
-                <span class="d-none d-lg-inline-block"> {{ getPrice(item.ticker).current }} € * {{ item.ownedShares }} = </span><span class="value">{{ item.totalValue }}€ </span>
+                <span class="d-none d-lg-inline-block">{{ item.value }} € * {{ item.ownedShares }} = </span><span class="value">{{ item.totalValue }}€ </span>
               </div>
               
               <div class="delta " [ngClass]="{'up': item.gains > 0, 'down' : item.gains < 0}">

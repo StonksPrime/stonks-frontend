@@ -12,6 +12,7 @@ export class AssetCardsHeaderComponent implements OnDestroy {
 
 
   @Input() type: string = 'Stock';
+  @Output() messageEvent = new EventEmitter<string>();
 
   types: string[] = ['ETF', 'Stock', 'Crypto'];
   currentTheme: string;
@@ -25,7 +26,7 @@ export class AssetCardsHeaderComponent implements OnDestroy {
   }
 
   refreshAssets() {
-    // TODO
+    this.messageEvent.emit('Hello');
   }
 
   changePeriod(period: string): void {

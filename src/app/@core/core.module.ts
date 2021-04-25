@@ -62,7 +62,6 @@ import { environment } from '../../environments/environment';
 import { AssetPriceData } from './data/asset-price';
 import { AssetPriceService } from './service/asset-price.service';
 
-
 const socialLinks = [
   {
     url: 'https://github.com/akveo/nebular',
@@ -119,6 +118,12 @@ export const NB_CORE_PROVIDERS = [
       if (req.url.endsWith('/api/token-auth/')) {
         return true;
       }
+      if (req.url.endsWith('/api/token-refresh/')) {
+        return true;
+      }
+      if (req.url.search('finnhub') !== -1 ) {
+        return true;
+      }
       return false;
     },
   },
@@ -170,9 +175,9 @@ export const NB_CORE_PROVIDERS = [
               failure: null, // stay on the same page
             },
           },
-
           refreshToken: {
-            endpoint: `${environment.backendUrl}/token-refresh/`,
+            endpoint: `/${environment.jwtRefresh}`,
+            requireValidToken: true,
           },
           token: {
             class: NbAuthOAuth2JWTToken,
@@ -239,7 +244,6 @@ export const NB_CORE_PROVIDERS = [
             maxLength: 50,
           },
         },
-
       },
     }),
   ],
