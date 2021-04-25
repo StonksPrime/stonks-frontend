@@ -1,0 +1,23 @@
+{
+    "HOME": {
+      "TITLE": "polles polles",
+      "SELECT": "Canvia l'idioma"
+    },
+    "HEADER": {
+      "profile": "Perfil",
+      "logout": "Surt",
+      "SELECT": "Canvia l'idioma"
+    },
+    "MENU": {
+      "home": "Inici",
+      "login": "Entra / Registre",
+      "dashboard": "Dashboard",
+      "my-portfolio": "Cartera",
+      "my-squads": "Els meus Squads",
+      "discover": "Descobreix",
+      "rankings": "Rànquing",
+      "blackboard": "Pissarra",
+      "today-highlights": "Destacats d'avui"
+    }
+  }
+  

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { UserData } from '../../@core/data/users';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ngx-stonks-home',
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: UserData,
+    public translate: TranslateService,
   ) { }
 
   ngOnInit() {

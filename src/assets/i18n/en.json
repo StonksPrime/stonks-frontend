@@ -1,0 +1,23 @@
+{
+    "HOME": {
+      "TITLE": "dicks dicks",
+      "SELECT": "Change language"
+    },
+    "HEADER": {
+      "profile": "Profile",
+      "logout": "Log out",
+      "SELECT": "Change language"
+    },
+    "MENU": {
+      "home": "Home",
+      "login": "Login / Register",
+      "dashboard": "Dashboard",
+      "my-portfolio": "My Portfolio",
+      "my-squads": "My Squads",
+      "discover": "Discover",
+      "rankings": "Rankings",
+      "blackboard": "Blackboard",
+      "today-highlights": "Today's highlights"
+    }
+  }
+  

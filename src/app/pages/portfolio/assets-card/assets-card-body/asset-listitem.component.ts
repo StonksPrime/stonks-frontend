@@ -1,6 +1,6 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import { map, takeWhile } from 'rxjs/operators';
+import { first, map, takeWhile } from 'rxjs/operators';
 
 import { AssetList } from '../../../../@core/data/asset-list';
 import { AssetPrice, AssetPriceData } from '../../../../@core/data/asset-price';
@@ -10,7 +10,7 @@ import { AssetPrice, AssetPriceData } from '../../../../@core/data/asset-price';
   styleUrls: ['./asset-listitem.component.scss'],
   templateUrl: './asset-listitem.component.html',
 })
-export class AssetListItemComponent implements OnDestroy {
+export class AssetListItemComponent implements OnDestroy, OnInit {
 
   private alive = true;
 
@@ -26,18 +26,23 @@ export class AssetListItemComponent implements OnDestroy {
         this.currentTheme = theme.name;
     });
   }
+  ngOnInit(): void {
+    this.updatePrices();
+  }
 
   trackByDate(_, item) {
     return item.date;
   }
 
-  getPrice(ticker: string) {
-    const price = this.assetPriceService.getAssetPrice(ticker)
-      .subscribe((response: AssetPrice) => {
-        // console.log(response);
-        return response;
+  updatePrices() {
+    this.frontCardData.forEach(element => {
+      this.assetPriceService.getAssetPrice(element.ticker)
+      .pipe(first())
+      .subscribe((response) => {
+        element.value = response.c;
       });
-    return price;
+      // element.value = this.getPrice(element.ticker);
+    });
   }
 
   ngOnDestroy() {

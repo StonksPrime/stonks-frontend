@@ -19,6 +19,10 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,7 +41,14 @@ import {
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-
+    TranslateModule.forRoot({
+      defaultLanguage: 'cat',
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (http: HttpClient) =>  new TranslateHttpLoader(http, '../../../assets/i18n/', '.json'),
+          deps: [HttpClient],
+      },
+    }),
   ],
   providers: [
 
