@@ -1,0 +1,59 @@
+<nb-list>
+  <nb-list-item class="item" *ngFor="let item of frontCardData; trackBy: trackByDate">
+    <nb-accordion>
+      <nb-accordion-item>
+        <nb-accordion-item-header class="item">
+            <span>
+              <div class="stock-container">
+                <div *ngIf="item.img" class="img-container" (click)="updatePrices()">
+                  <img class="stock-picture image" src="{{ item.img }}">
+                </div>
+                <div *ngIf="!item.img" class="img-container">
+                  {{ item.ticker }}
+                </div>
+                <div class="name-container">
+                  <div class="stock-name">{{ item.assetName }} ( {{ item.ticker }} )</div>
+                  <div class="stock-info"> {{ item.market }} | {{ item.broker }} </div>
+                </div>
+              </div>
+            </span>
+            <!--span> 
+              <period-bar [barData]="item.comparison" [successDelta]="item.gains > 0"></period-bar>
+            </span-->
+            <span class="monetary-container">
+              <div>
+                <span class="d-none d-lg-inline-block">{{ item.value }} € * {{ item.ownedShares }} = </span><span class="value">{{ item.totalValue }}€ </span>
+              </div>
+              
+              <div class="delta " [ngClass]="{'up': item.gains > 0, 'down' : item.gains < 0}">
+                <nb-icon [icon]="item.gains > 0 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+                <span class="d-none d-lg-inline-block">{{ item.gains }}€</span>
+                {{ item.gainsPercent }}% 
+              </div>
+            </span>
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <div class="container-fluid">
+          <div class="row" style="align-items: center;">
+            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+              Nº: {{ item.ownedShares }}
+            </div>
+            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+              G/P: {{ item.gains }}€
+            </div>
+            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+              +/- Hoy: {{ item.todayGains }}€
+            </div>
+            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+              BEP: {{ item.BEP }}€
+            </div>
+            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+              Ultima: 21:55:00 UTM +1
+            </div>
+          </div>          
+        </div>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+</nb-list-item>
+</nb-list>

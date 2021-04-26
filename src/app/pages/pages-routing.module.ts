@@ -34,6 +34,12 @@ const routes: Routes = [{
         .then(m => m.PortfolioModule),
     },
     {
+      path: 'explore/assets',
+      canActivate: [AuthGuard],
+      loadChildren: () => import('./explore/explore.module')
+        .then(m => m.ExploreModule),
+    },
+    {
       path: 'auth',
       loadChildren: () => import('./auth/auth.module')
         .then(m => m.SlabAuthModule),

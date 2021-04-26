@@ -1,0 +1,138 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  overflow: auto;
+
+  nb-list-item {
+    padding: 0;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > * {
+      flex: 1 1 auto;
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  .delta {
+    display: flex;
+    align-items: right;
+
+    &.down {
+      color: nb-theme(color-danger-default);
+    }
+
+    &.up {
+      color: nb-theme(color-success-default);
+    }
+  }
+
+  .stock-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  nb-accordion-item-header {
+    padding: 0.4rem;
+    padding-right: 1.25rem;
+  }
+
+  .img-container {
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    border: solid 1px  #edf1f7;
+    background-color: #edf1f7;
+    border-radius: 10px;
+    object-fit: cover;
+    line-height: 4rem;
+    text-align: center;
+  }
+  .stock-picture {
+    position: relative;
+    flex-shrink: 0;
+
+    &.image {
+      display:block;
+      margin:auto;
+      position: absolute;
+      max-width: 80%;
+      height: auto;
+      width: auto;
+      object-fit: cover;
+      align-self: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    &.initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .value {
+    text-shadow: grey;
+    font-weight: bold;
+    font-size: larger;
+  }
+  .stock-name {
+    font-size: medium;
+  }
+
+  .stock-info {
+    font-size: small;
+    color: grey;
+  }
+
+  .stock-name,
+  .stock-info {
+    @include nb-rtl(text-align, right);
+  }
+  .name-container {
+    @include nb-ltr(margin-left, 0.5rem);
+    @include nb-rtl(margin-right, 0.5rem);
+  }
+  .monetary-container {
+    @include nb-ltr(margin-left, 0.5rem);
+    @include nb-rtl(margin-right, 0.5rem);
+    justify-content: right;
+    text-align: right;
+    flex-basis: content;
+    align-content: right;
+    padding-right: inherit;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .info-price {
+    text-align: right;
+    justify-content: right;
+  }
+  
+  .delta {
+      justify-content: right;
+      display: inline;
+  }
+  
+  @include media-breakpoint-down(is) {
+    ngx-traffic-bar {
+      display: none;
+    }
+  }
+}

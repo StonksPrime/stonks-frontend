@@ -75,11 +75,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'discover',
+    title: 'Explore',
     icon: 'compass-outline',
     link: '/pages/home',
     data: {
-      translationId: 'discover',
+      translationId: 'explore',
       permission: 'view',
       resource: 'defaultUserPermissions',
     },
@@ -99,14 +99,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
           {
             title: 'Stocks',
             icon: 'trending-up-outline',
+            link: '/pages/explore/assets/stock',
           },
           {
             title: 'ETF',
             icon: 'trending-up-outline',
+            link: '/pages/explore/assets/etf',
           },
           {
             title: 'Crypto',
             icon: 'trending-up-outline',
+            link: '/pages/explore/assets/crypto',
           },
         ],
       },

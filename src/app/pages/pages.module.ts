@@ -10,6 +10,7 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { SlabAuthModule} from './auth/auth.module';
 import { HomeModule } from './home/home.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
+import { ExploreModule } from './explore/explore.module';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { PortfolioModule } from './portfolio/portfolio.module';
     SlabAuthModule,
     HomeModule,
     PortfolioModule,
+    ExploreModule,
   ],
   declarations: [
     PagesComponent,
