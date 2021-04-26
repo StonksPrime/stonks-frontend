@@ -152,7 +152,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       resource: 'defaultGuestPermissions',
     },
   },
-  {
+  /*{
     title: 'FEATURES',
     group: true,
     data: {
@@ -195,7 +195,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
-/*  {
+  {
     title: 'Forms',
     icon: 'edit-2-outline',
     children: [
