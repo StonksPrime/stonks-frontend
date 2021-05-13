@@ -1,37 +1,49 @@
-  <nb-card-front>
-    <nb-card size="big">
-      <nb-card-header>
-        <span>Amazon ({{ ticker }}) price chart</span>
-      </nb-card-header>
-      <nb-card-body>
-        Some fancy graph
-      </nb-card-body>
-    </nb-card>
+<nb-card-front>
+  <nb-card size="big">
+    <nb-card-header>
+      <span><b>{{name}}</b> {{ ticker }} price chart</span>
+    </nb-card-header>
+    <nb-card-body>
+      Some fancy graph
+    </nb-card-body>
+  </nb-card>
 
-    <nb-card size="big">
-      <nb-card-header>
-        <span>Amazon ({{ ticker }}) financial data</span>
-      </nb-card-header>
-      <nb-card-body>
-        <div class="container-fluid">
-          <div class="row" style="align-items: center;">
-            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-              Price: 32423€
-            </div>
-            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-              G/P: gains€
-            </div>
-            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-              +/- Hoy: 123€
-            </div>
-            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-              Market cap: 4€
-            </div>
-            <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-              Ultima: 21:55:00 UTM +1
-            </div>
-          </div>          
-        </div>
-      </nb-card-body>
-    </nb-card>
-  </nb-card-front>
+  <nb-card size="big">
+    <nb-card-header>
+      <span><b>{{name}}</b> {{ ticker }} financial data</span>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="container-fluid">
+        <div class="row" style="align-items: center;">
+          <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+            <b>Current Price: </b>{{price}} {{currency}}
+          </div>
+          <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+            <b>G/P: </b>gains stronks
+          </div>
+          <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+            <b>+/- Today: </b>{{deltaNum}} {{currency}} {{deltaPer}}%
+          </div>
+          <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+            <b>Market cap: </b>{{marketCap}} {{currency}}
+          </div>
+          <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+            <b>Last Price: </b>{{lastDate}} Falta convertir això a un datetime llegible
+          </div>
+          <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+            <b>Min. Session: </b>{{minSession}} {{currency}}
+          </div>
+          <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+            <b>Max. Session: </b>{{maxSession}} {{currency}}
+          </div>
+          <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+            <b>Open Session: </b>{{open}} {{currency}}
+          </div> 
+          <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+            <b>Last Close: </b>{{close}} {{currency}}
+          </div>
+        </div>          
+      </div>
+    </nb-card-body>
+  </nb-card>
+</nb-card-front>

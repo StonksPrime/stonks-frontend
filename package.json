@@ -51,6 +51,7 @@
     "@swimlane/ngx-charts": "^14.0.0",
     "@types/ckeditor": "4.9.10",
     "angular2-chartjs": "0.4.1",
+    "axios": "^0.21.1",
     "bootstrap": "4.3.1",
     "chart.js": "2.7.1",
     "ckeditor": "4.7.3",
@@ -64,8 +65,8 @@
     "leaflet": "1.2.0",
     "nebular-icons": "1.1.0",
     "ng2-ckeditor": "^1.2.9",
-    "ng2-smart-table": "^1.6.0",
     "ng2-completer": "^9.0.1",
+    "ng2-smart-table": "^1.6.0",
     "ngx-echarts": "^4.2.2",
     "normalize.css": "6.0.0",
     "pace-js": "1.0.2",
@@ -78,6 +79,7 @@
     "tslib": "^2.0.0",
     "typeface-exo": "0.0.22",
     "web-animations-js": "^2.3.2",
+    "yahoo-finance2": "^1.10.4",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

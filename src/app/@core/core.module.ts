@@ -61,6 +61,8 @@ import { AuthJWTInterceptor } from './http.interceptor';
 import { environment } from '../../environments/environment';
 import { AssetPriceData } from './data/asset-price';
 import { AssetPriceService } from './service/asset-price.service';
+import { AssetYahooData } from './data/asset-yahoo';
+import { AssetYahooService } from './service/asset-yahoo.service';
 
 const socialLinks = [
   {
@@ -102,6 +104,7 @@ const DATA_SERVICES = [
   { provide: SecurityCamerasData, useClass: SecurityCamerasService },
   { provide: AssetListData, useClass: AssetListService},
   { provide: AssetPriceData, useClass: AssetPriceService},
+  { provide: AssetYahooData, useClass: AssetYahooService},
 ];
 
 export const NB_CORE_PROVIDERS = [
