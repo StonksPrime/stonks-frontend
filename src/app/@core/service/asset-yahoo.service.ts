@@ -20,7 +20,7 @@ export class AssetYahooService extends AssetYahooData {
         .pipe(
             map(response => {
                 const yahoo: AssetYahoo = response['quoteResponse'].result[0];
-                'console.log(response);
+                // console.log(response);
                 return yahoo;
             }),
             // catchError(this.handleError)
