@@ -16,7 +16,7 @@ export class AssetYahooService extends AssetYahooData {
   }
 
   getAssetYahoo(ticker: string): Observable<AssetYahoo> {
-    return this.http.get<any>(`https://query2.finance.yahoo.com/v7/finance/quote?symbols=${ticker}`)
+    return this.http.get<any>(`${environment.apiUrl}/quote?symbols=${ticker}`)
         .pipe(
             map(response => {
                 const yahoo: AssetYahoo = response['quoteResponse'].result[0];

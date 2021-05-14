@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AssetList, AssetListData } from '../../../@core/data/asset-list';
 import { first, map, takeWhile } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import axios from 'axios';
 import { AssetYahoo, AssetYahooData } from '../../../@core/data/asset-yahoo';
 
 @Component({
